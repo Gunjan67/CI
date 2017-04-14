@@ -1,0 +1,4 @@
+if (isset($this->session->userdata['driver']))
+{
+  $emails = $this->session->userdata['driver']; 
+} 
