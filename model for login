@@ -1,0 +1,26 @@
+public function Login($email,$password)
+	{
+		$query = $this->db->get_where('admin',array('email'=>$email,'password'=>$password)); 
+		
+		 if($query->num_rows()==1)
+		 {
+		 	$row = $query->row();
+
+		 	$data =array('id' 	         => $row->id,
+		 				 'username' 	 => $row->username,
+		 				 'mobileno' 	 => $row->mobileno,
+		 				 'gender' 	     => $row->gender,
+		 				 'age'      	 => $row->age,
+		 				 'validated'     => true); 
+
+		 	 
+	 		$this->session->set_userdata('admin',$data); 
+		  	 
+		 }
+		 else
+		 {
+		 	$this->session->set_flashdata('error', 'Invalid Email and password, please try again.'); 
+				redirect('admin/login');
+		 }
+	 
+	}
